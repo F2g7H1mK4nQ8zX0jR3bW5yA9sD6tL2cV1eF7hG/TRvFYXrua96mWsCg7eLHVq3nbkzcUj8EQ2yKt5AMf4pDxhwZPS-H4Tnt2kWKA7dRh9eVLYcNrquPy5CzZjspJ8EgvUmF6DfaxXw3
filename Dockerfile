@@ -1,15 +1,20 @@
-FROM debian:latest
+# Use a imagem base do Alpine
+FROM alpine:latest
 
-RUN apt-get update && apt-get install -y \
-    tor \
-    inspircd \
-    && rm -rf /var/lib/apt/lists/*
+# Instalação de dependências
+RUN apk add --no-cache znc
 
-RUN mkdir -p /var/lib/tor/irc_service && \
-    chown -R tor:tor /var/lib/tor/irc_service
+# Criar diretório para a configuração do ZNC
+RUN mkdir /znc && chown -R znc:znc /znc
 
-COPY torrc /etc/tor/torrc
+# Copiar um arquivo de configuração padrão para o contêiner
+COPY znc.conf /znc/znc.conf
 
-EXPOSE 6667
+# Alterar para o usuário não root
+USER znc
 
-CMD tor & inspircd
+# Expor a porta padrão do ZNC
+EXPOSE 65001
+
+# Comando para iniciar o ZNC
+CMD ["znc", "-f", "-d", "/znc/znc.conf"]
