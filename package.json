@@ -1,0 +1,16 @@
+{
+  "name": "trvfyxrua96mwscg7elhvq3nbkzcuj8eq2ykt5amf4pdxhwzps-h4tnt2kwka7drh9evlycnrqupy5czzjspj8egvumf6dfaxxw3",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
